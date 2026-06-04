@@ -1,0 +1,247 @@
+
+
+.container {
+  display: flex;
+  gap: 32px;
+  width: 100%;
+  height: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.tasks-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+
+.page-header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+  margin-bottom: 24px;
+  margin-top: 0;
+}
+
+.page-header h1 span {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+
+.tasks-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+}
+
+
+.task-tile {
+  position: relative;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-bottom: 3px solid var(--border-color);
+  border-right: 3px solid var(--border-color);
+  border-radius: 16px;
+  padding: 19px 18px 21px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.02);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: calc((100% - 40px) / 3); 
+  box-sizing: border-box;
+}
+
+.task-tile:hover {
+  border-color: var(--accent-secondary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.completed {
+  opacity: 0.6;
+  border-bottom: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  box-shadow: none;
+}
+
+.completed .tile-body h3,
+.completed .tile-body p {
+  text-decoration: line-through;
+}
+
+.tile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tile-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.tile-body h3 {
+  font-size: 16px;
+  color: var(--text-main);
+  word-break: break-word;
+  margin: 0;
+}
+
+.tile-body p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  word-break: break-word;
+  margin: 0;
+}
+
+.tile-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-color);
+  padding-top: 12px;
+  margin-top: auto;
+  color: var(--text-muted);
+}
+
+.action-text {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.tile-footer svg {
+  transition: transform 0.2s ease;
+}
+
+.task-tile:hover .tile-footer svg {
+  color: var(--text-main);
+}
+
+
+.priority-tag {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.tag-low {
+  background-color: var(--bg-sidebar);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+}
+
+.tag-medium {
+  background-color: var(--accent-secondary);
+  color: #ffffff;
+}
+
+.tag-high {
+  background-color: var(--accent-primary);
+  color: #ffffff;
+}
+
+.empty-header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.checkbox-wrapper {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-wrapper input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkbox-box {
+  position: relative;
+  height: 20px;
+  width: 20px;
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  border-radius: 50px;
+  transition: all 0.2s ease-in-out;
+}
+
+.checkbox-wrapper:hover input ~ .checkbox-box {
+  border-color: #a8aeb5;
+  background-color: #e9ecef;
+}
+
+.checkbox-wrapper input:checked ~ .checkbox-box {
+  background-color: #10b981;
+  border-color: #10b981;
+  border-bottom: 2.5px solid #059669;
+  border-right: 2.5px solid #059669;
+}
+
+.checkbox-box:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-wrapper input:checked ~ .checkbox-box:after {
+  display: block;
+}
+
+
+@media (max-width: 1024px) {
+ 
+  .container {
+    flex-direction: column;
+    gap: 0;
+    padding: 0 16px;
+  }
+
+  
+  .tasks-section {
+    width: 100%;
+    padding: 16px 0;
+  }
+
+ 
+  .empty-section {
+    display: none !important;
+  }
+
+  .task-tile {
+    width: calc((100% - 20px) / 2);
+  }
+}
+
+@media (max-width: 650px) {
+  
+  .task-tile {
+    width: 100%;
+  }
+}
+

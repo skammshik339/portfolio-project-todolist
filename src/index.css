@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Knewave&family=Rubik+Spray+Paint&display=swap");
+
+/* 
+ 3. Дефолтный шрифт
+ font-family: "Comic Neue", cursive;
+  font-weight: 400;
+  font-style: normal; 
+*/
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Comic Neue", cursive;
+  font-weight: 600;
+  font-style: normal; 
+}
+
+html, 
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  --bg-main: #fbf7f4;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4ebe6;
+
+  --text-main: #2a2421;
+  --text-muted: #8a7e78;
+
+  --accent-primary: #e5a99e;
+  --accent-secondary: #d4a373;
+  --border-color: #ede4df;
+  --hover-color: #8a7e78;
+}
+
+body.dark {
+  --bg-main: #16161a;
+  --bg-card: #222229;
+  --bg-sidebar: #1c1c21;
+
+  --text-main: #e1e1e6;
+  --text-muted: #8f8f9e;
+
+  --accent-primary: #9d75ff;
+  --accent-secondary: #6366f1;
+  --border-color: #2d2d38;
+  --hover-color:#76747b;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
