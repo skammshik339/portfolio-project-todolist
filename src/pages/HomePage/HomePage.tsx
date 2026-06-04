@@ -5,6 +5,7 @@ import styles from "./HomePage.module.css";
 import { ChevronDown } from "lucide-react";
 import TaskModal from "../../components/TaskModal/TaskModal";
 import ValidationModal from '../../components/ValidationModal/ValidationModal'
+import SuccessModal from '../../components/SuccessModal/SuccessModal';
 
 export default function HomePage() {
   const tasks = useTaskStore((state) => state.tasks);
@@ -16,6 +17,7 @@ export default function HomePage() {
   const [priority, setPriority] = useState<Task["priority"]>("Низкий");
   const [selectedTaskId, setSelectedTaskId] = useState<number | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [successMsg,setSuccessMsg] = useState<string | null>(null)
 
   const handleCreateTask = () => {
     if (!title.trim()) {
@@ -35,6 +37,7 @@ export default function HomePage() {
     setTitle("");
     setDesc("");
     setPriority("Низкий");
+    setSuccessMsg('success')
   };
   const getTagClass = (prio: Task["priority"]) => {
     if (prio === "Высокий") return styles["tag-high"];
@@ -140,6 +143,11 @@ export default function HomePage() {
       {errorMsg && (
         <ValidationModal message={errorMsg} onClose={() => setErrorMsg(null)} />
       )}
+      {
+        successMsg && (
+        <SuccessModal message={successMsg} onClose={() => setSuccessMsg(null)} />
+      )
+      }
     </div>
   );
 }

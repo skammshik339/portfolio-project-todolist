@@ -1,0 +1,48 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px 16px;
+  z-index: 3000;
+}
+
+.modal-box {
+  background-color: rgb(31, 196, 31);
+  color: #ffffff;
+  font: 600 14px sans-serif;
+  padding: 16px 24px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+   border-bottom: 3.5px solid #24a910;
+  border-right: 3.5px solid #24a910;
+  max-width: 340px;
+  width: 100%;
+  animation: smoothCycle 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes smoothCycle {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px); 
+  }
+  12% {
+    opacity: 1;
+    transform: translateY(0);     
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(0);   
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-60px); 
+  }
+}
