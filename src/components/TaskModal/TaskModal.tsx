@@ -63,6 +63,7 @@ export default function TaskModal({ taskId, onClose }: TaskModalProps) {
   if (!initialTask) return null;
 
   return (
+    <>
     <div className={styles["overlay"]}>
       <div className={styles["modal-box"]} onClick={(e) => e.stopPropagation()}>
         <button
@@ -158,9 +159,10 @@ export default function TaskModal({ taskId, onClose }: TaskModalProps) {
           </div>
         </div>
       </div>
-      {errorMsg && (
+    </div>
+    {errorMsg && (
         <ValidationModal message={errorMsg} onClose={() => setErrorMsg(null)} />
       )}
-    </div>
+      </>
   );
 }
