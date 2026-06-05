@@ -71,7 +71,6 @@ export default function HomePage() {
             <details className={styles["dropdown"]}>
               <summary className={styles["dropdown-trigger"]}>
                 <span>Приоритет ({priority})</span>
-                <ChevronDown size={16} className={styles["dropdown-chevron"]} />
               </summary>
 
               <div className={styles["dropdown-menu"]}>
