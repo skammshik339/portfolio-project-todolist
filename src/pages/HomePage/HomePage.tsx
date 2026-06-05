@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useTaskStore } from "../../store/TaskStore";
 import type { Task } from "../../store/TaskStore";
 import styles from "./HomePage.module.css";
-import { ChevronDown } from "lucide-react";
 import TaskModal from "../../components/TaskModal/TaskModal";
 import ValidationModal from '../../components/ValidationModal/ValidationModal'
 import SuccessModal from '../../components/SuccessModal/SuccessModal';
