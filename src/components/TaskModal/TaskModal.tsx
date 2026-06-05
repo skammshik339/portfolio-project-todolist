@@ -36,7 +36,7 @@ export default function TaskModal({ taskId, onClose }: TaskModalProps) {
   }, [taskId, initialTask]);
 
   const handleSave = () => {
-    if (!taskId || !title.trim()) return;
+    if (!taskId) return;
 
     if (!title.trim()) {
       setErrorMsg("Заголовок не может быть пустым!");
