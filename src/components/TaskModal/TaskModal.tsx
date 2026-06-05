@@ -3,6 +3,7 @@ import type { Task } from "../../store/TaskStore";
 import styles from "./TaskModal.module.css";
 import { useTaskStore } from "../../store/TaskStore";
 import { useEffect, useState } from "react";
+import ValidationModal from "../ValidationModal/ValidationModal";
 
 interface TaskModalProps {
   taskId: number | null;
@@ -22,6 +23,7 @@ export default function TaskModal({ taskId, onClose }: TaskModalProps) {
   const [priority, setPriority] = useState<Task["priority"]>("Низкий");
   const [completed, setCompleted] = useState(false);
   const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   useEffect(() => {
     if (initialTask) {
@@ -36,6 +38,18 @@ export default function TaskModal({ taskId, onClose }: TaskModalProps) {
   const handleSave = () => {
     if (!taskId || !title.trim()) return;
 
+    if (!title.trim()) {
+      setErrorMsg("Заголовок не может быть пустым!");
+      return;
+    }
+    if (title.trim().length > 50) {
+      setErrorMsg("Заголовок слишком длинный (макс. 50 симв.)");
+      return;
+    }
+    if (desc.trim().length > 300) {
+      setErrorMsg("Описание слишком длинное (макс. 300 симв.)");
+      return;
+    }
     updateTask(taskId, {
       title: title.trim(),
       desc: desc.trim(),
@@ -144,8 +158,9 @@ export default function TaskModal({ taskId, onClose }: TaskModalProps) {
           </div>
         </div>
       </div>
+      {errorMsg && (
+        <ValidationModal message={errorMsg} onClose={() => setErrorMsg(null)} />
+      )}
     </div>
   );
 }
-
-
