@@ -20,7 +20,7 @@ export default function SuccessModal({ message, onClose }: ValidationModalProps)
   return (
     <div className={styles['overlay']}>
       <div className={styles['modal-box']}>
-        <span>Задача успешно создана</span>
+        <span>{message}</span>
       </div>
     </div>
   );

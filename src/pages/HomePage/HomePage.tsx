@@ -36,7 +36,7 @@ export default function HomePage() {
     setTitle("");
     setDesc("");
     setPriority("Низкий");
-    setSuccessMsg('success')
+    setSuccessMsg('Задача успешно создана')
   };
   const getTagClass = (prio: Task["priority"]) => {
     if (prio === "Высокий") return styles["tag-high"];

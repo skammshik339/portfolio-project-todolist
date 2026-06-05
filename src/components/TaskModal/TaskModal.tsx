@@ -21,7 +21,6 @@ export default function TaskModal({ taskId, onClose }: TaskModalProps) {
   const [desc, setDesc] = useState("");
   const [priority, setPriority] = useState<Task["priority"]>("Низкий");
   const [completed, setCompleted] = useState(false);
-
   const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
 
   useEffect(() => {
@@ -130,17 +129,17 @@ export default function TaskModal({ taskId, onClose }: TaskModalProps) {
               )}
             </div>
             <div className={styles["footer-right"]}>
-            <button
-              className={`${styles["btn-status"]} ${completed ? styles["completed"] : ""}`}
-              onClick={() => setCompleted(!completed)}
-            >
-              <Check size={16} />
-              <span>{completed ? "Выполнено" : "Выполнить"}</span>
-            </button>
-            <button className={styles["btn-save"]} onClick={handleSave}>
-              <Save size={16} />
-              <span>Сохранить</span>
-            </button>
+              <button
+                className={`${styles["btn-status"]} ${completed ? styles["completed"] : ""}`}
+                onClick={() => setCompleted(!completed)}
+              >
+                <Check size={16} />
+                <span>{completed ? "Выполнено" : "Выполнить"}</span>
+              </button>
+              <button className={styles["btn-save"]} onClick={handleSave}>
+                <Save size={16} />
+                <span>Сохранить</span>
+              </button>
             </div>
           </div>
         </div>
@@ -148,3 +147,5 @@ export default function TaskModal({ taskId, onClose }: TaskModalProps) {
     </div>
   );
 }
+
+
