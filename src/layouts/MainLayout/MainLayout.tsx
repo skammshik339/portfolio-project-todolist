@@ -34,6 +34,14 @@ export default function MainLayout() {
                 `${styles["nav-link"]} ${isActive ? styles["nav-link-active"] : ""}`
               }
             >
+             О нас
+            </NavLink>
+            <NavLink
+              to="/home"
+              className={({ isActive }) =>
+                `${styles["nav-link"]} ${isActive ? styles["nav-link-active"] : ""}`
+              }
+            >
               Главная
             </NavLink>
 

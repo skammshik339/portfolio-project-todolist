@@ -1,0 +1,155 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.main-content {
+  max-width: 600px;
+  width: 100%;
+  margin: auto;
+  background-color: var(--bg-card);
+  border: 2px var(--border-color) solid;
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  text-align: center;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  color: var(--accent-primary);
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.divider {
+  height: 2px;
+  background-color: var(--border-color);
+  margin: 24px 0;
+  transition: background-color 0.3s ease;
+}
+
+.steps-title {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  color: var(--text-main);
+  text-align: left;
+}
+
+.steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.step-number {
+
+  background-color: var(--accent-secondary);
+  color: var(--bg-card);
+  min-width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.step-text {
+  font-size: 1rem;
+  color: var(--text-main);
+  line-height: 1.5;
+  padding-top: 2px;
+}
+
+.footer {
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.tg-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  color: var(--accent-primary);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.tg-link:hover {
+
+  color: var(--hover-color);
+}
+
+.copyright {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+}
+.logo{
+  width: 40px;
+  margin-left: 10px;
+  border-radius: 50%;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 16px;
+  }
+  
+  .main-content {
+    padding: 24px 16px;
+    border-radius: 16px;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    margin-bottom: 24px;
+  }
+
+  .steps-title {
+    font-size: 1.15rem;
+  }
+
+  .step-text {
+    font-size: 0.95rem;
+  }
+}
