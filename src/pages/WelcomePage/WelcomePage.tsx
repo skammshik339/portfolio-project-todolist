@@ -40,8 +40,7 @@ export default function WelcomePage() {
           <div className={styles["step-item"]}>
             <span className={styles["step-number"]}>4</span>
             <span className={styles["step-text"]}>
-              Кликайте по карточке задачи для её редактирования, изменения
-              статуса выполнения или удаления.
+              Кликните по карточке задачи для её редактирования, изменения статуса выполнения или удаления.
             </span>
           </div>
         </div>
