@@ -350,7 +350,9 @@
   .task-tile {
     width: calc((100% - 20px) / 2);
   } 
-
+ .tasks-list{
+  padding-right: 5px;
+ }
   .controls {
     flex-direction: column;
     gap: 12px;
