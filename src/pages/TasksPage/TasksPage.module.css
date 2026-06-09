@@ -244,11 +244,6 @@
   min-width: 200px;
 }
 
-.filter-icon {
-  color: var(--text-muted);
-}
-
-
 .dropdown {
   position: relative;
   width: 100%;

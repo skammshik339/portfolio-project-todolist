@@ -74,7 +74,6 @@ export default function Tasks() {
             />
           </div>
           <div className={styles["filter-container"]}>
-            <Filter size={16} className={styles["filter-icon"]} />
             <details className={styles["dropdown"]}>
               <summary className={styles["dropdown-trigger"]}>
                 <span>{getFilterLabel()}</span>
