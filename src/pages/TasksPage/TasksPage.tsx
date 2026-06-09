@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useTaskStore } from "../../store/TaskStore";
 import type { Task } from '../../store/TaskStore';
-import { ChevronRight, Filter } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import styles from "./TasksPage.module.css";
 import TaskModal from "../../components/TaskModal/TaskModal";
 
