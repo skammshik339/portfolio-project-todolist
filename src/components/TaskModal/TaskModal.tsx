@@ -1,4 +1,4 @@
-import { Check, ChevronDown, Trash2, X, Save } from "lucide-react";
+import { Check, ChevronDown, X, Save } from "lucide-react";
 import type { Task } from "../../store/TaskStore";
 import styles from "./TaskModal.module.css";
 import { useTaskStore } from "../../store/TaskStore";
@@ -15,14 +15,13 @@ export default function TaskModal({ taskId, onClose }: TaskModalProps) {
     (state) => state.tasks.find((t) => t.id === taskId) || null,
   );
 
-  const deleteTask = useTaskStore((state) => state.deleteTask);
   const updateTask = useTaskStore((state) => state.updateTask);
 
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [priority, setPriority] = useState<Task["priority"]>("Низкий");
+  const [category, setCategory] = useState<Task["category"]>("Личное");
   const [completed, setCompleted] = useState(false);
-  const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   useEffect(() => {
@@ -30,9 +29,9 @@ export default function TaskModal({ taskId, onClose }: TaskModalProps) {
       setTitle(initialTask.title);
       setDesc(initialTask.desc);
       setPriority(initialTask.priority);
+      setCategory(initialTask.category || "Личное");
       setCompleted(initialTask.completed);
     }
-    setIsConfirmingDelete(false);
   }, [taskId, initialTask]);
 
   const handleSave = () => {
@@ -54,6 +53,7 @@ export default function TaskModal({ taskId, onClose }: TaskModalProps) {
       title: title.trim(),
       desc: desc.trim(),
       priority,
+      category,
       completed,
     });
 
@@ -83,27 +83,51 @@ export default function TaskModal({ taskId, onClose }: TaskModalProps) {
             placeholder="Заголовок задачи..."
           />
 
-          <details className={styles["dropdown"]}>
-            <summary className={styles["dropdown-trigger"]}>
-              <span>Приоритет ({priority})</span>
-              <ChevronDown size={14} className={styles["dropdown-chevron"]} />
-            </summary>
-            <div className={styles["dropdown-menu"]}>
-              {(["Низкий", "Средний", "Высокий"] as const).map((prio) => (
-                <button
-                  key={prio}
-                  type="button"
-                  className={`${styles["dropdown-item"]} ${priority === prio ? styles["active"] : ""}`}
-                  onClick={(e) => {
-                    setPriority(prio);
-                    e.currentTarget.closest("details")?.removeAttribute("open");
-                  }}
-                >
-                  Приоритет ({prio})
-                </button>
-              ))}
-            </div>
-          </details>
+          <div className={styles["dropdowns-container"]}>
+            <details className={styles["dropdown"]}>
+              <summary className={styles["dropdown-trigger"]}>
+                <span>Приоритет ({priority})</span>
+                <ChevronDown size={14} className={styles["dropdown-chevron"]} />
+              </summary>
+              <div className={styles["dropdown-menu"]}>
+                {(["Низкий", "Средний", "Высокий"] as const).map((prio) => (
+                  <button
+                    key={prio}
+                    type="button"
+                    className={`${styles["dropdown-item"]} ${priority === prio ? styles["active"] : ""}`}
+                    onClick={(e) => {
+                      setPriority(prio);
+                      e.currentTarget.closest("details")?.removeAttribute("open");
+                    }}
+                  >
+                    Приоритет ({prio})
+                  </button>
+                ))}
+              </div>
+            </details>
+
+            <details className={styles["dropdown"]}>
+              <summary className={styles["dropdown-trigger"]}>
+                <span>Категория ({category})</span>
+                <ChevronDown size={14} className={styles["dropdown-chevron"]} />
+              </summary>
+              <div className={styles["dropdown-menu"]}>
+                {(["Работа", "Дом", "Учеба", "Личное", "Другое"] as const).map((cat) => (
+                  <button
+                    key={cat}
+                    type="button"
+                    className={`${styles["dropdown-item"]} ${category === cat ? styles["active"] : ""}`}
+                    onClick={(e) => {
+                      setCategory(cat);
+                      e.currentTarget.closest("details")?.removeAttribute("open");
+                    }}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </details>
+          </div>
 
           <textarea
             className={styles["edit-desc"]}
@@ -114,34 +138,8 @@ export default function TaskModal({ taskId, onClose }: TaskModalProps) {
 
           <div className={styles["modal-footer"]}>
             <div className={styles["footer-left"]}>
-              {!isConfirmingDelete ? (
-                <button
-                  className={styles["btn-delete"]}
-                  onClick={() => setIsConfirmingDelete(true)}
-                >
-                  <Trash2 size={16} />
-                  <span>Удалить</span>
-                </button>
-              ) : (
-                <div className={styles["confirm-box"]}>
-                  <span className={styles["confirm-text"]}>Точно?</span>
-                  <button
-                    className={styles["btn-confirm-yes"]}
-                    onClick={() => {
-                      deleteTask(initialTask.id);
-                      onClose();
-                    }}
-                  >
-                    Да
-                  </button>
-                  <button
-                    className={styles["btn-confirm-no"]}
-                    onClick={() => setIsConfirmingDelete(false)}
-                  >
-                    Отмена
-                  </button>
-                </div>
-              )}
+              {/* Delete functionality removed - tasks can no longer be deleted */}
+              {/* Delete button removed as per requirements */}
             </div>
             <div className={styles["footer-right"]}>
               <button

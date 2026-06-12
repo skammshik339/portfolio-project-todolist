@@ -53,6 +53,15 @@ export default function MainLayout() {
             >
               Задачи
             </NavLink>
+
+            <NavLink
+              to="/statistics"
+              className={({ isActive }) =>
+                `${styles["nav-link"]} ${isActive ? styles["nav-link-active"] : ""}`
+              }
+            >
+              Статистика
+            </NavLink>
           </nav>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useTaskStore } from "../../store/TaskStore";
 import type { Task } from '../../store/TaskStore';
-import { ChevronRight } from "lucide-react";
+import { ChevronRight,  Clock, Info } from "lucide-react";
 import styles from "./TasksPage.module.css";
 import TaskModal from "../../components/TaskModal/TaskModal";
 
@@ -12,6 +12,7 @@ export default function Tasks() {
   const [filterOption, setFilterOption] = useState<string>("newest");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
+  const [showCompleted, setShowCompleted] = useState(false);
 
   const getTagClass = (prio: Task["priority"]) => {
     if (prio === "Высокий") return styles["tag-high"];
@@ -77,6 +78,7 @@ export default function Tasks() {
             <details className={styles["dropdown"]}>
               <summary className={styles["dropdown-trigger"]}>
                 <span>{getFilterLabel()}</span>
+
               </summary>
               <div className={styles["dropdown-menu"]}>
                 <button
@@ -123,11 +125,35 @@ export default function Tasks() {
             </details>
           </div>
         </div>
+
+        <div className={styles["tabs"]}>
+          <button
+            className={`${styles["tab-button"]} ${!showCompleted ? styles["active"] : ""}`}
+            onClick={() => setShowCompleted(false)}
+          >
+            Активные задачи
+          </button>
+          <button
+            className={`${styles["tab-button"]} ${showCompleted ? styles["active"] : ""}`}
+            onClick={() => setShowCompleted(true)}
+          >
+            Выполненные задачи
+          </button>
+        </div>
+
+        <div className={styles["weekly-cleanup-warning"]}>
+          <Info size={16} className={styles["warning-icon"]} />
+          <span>Все выполненные задачи автоматически удаляются каждый понедельник в 00:00</span>
+          <Clock size={16} className={styles["warning-icon"]} />
+        </div>
+
         <div className={styles["tasks-list"]}>
-          {filteredTasks.length === 0 ? (
-            <h1 className={styles["empty-header"]}>Задач не найдено</h1>
+          {filteredTasks.filter(task => showCompleted ? task.completed : !task.completed).length === 0 ? (
+            <h1 className={styles["empty-header"]}>
+              {showCompleted ? "Выполненных задач нет" : "Задач не найдено"}
+            </h1>
           ) : (
-            filteredTasks.map((task) => (
+            filteredTasks.filter(task => showCompleted ? task.completed : !task.completed).map((task) => (
               <div
                 key={task.id}
                 className={`${styles["task-tile"]} ${task.completed ? styles["completed"] : ""}`}

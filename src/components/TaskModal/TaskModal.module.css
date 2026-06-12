@@ -241,6 +241,13 @@
   border-right-color: #059669;
 }
 
+.dropdowns-container {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
 .dropdown {
   position: relative;
   width: 160px;

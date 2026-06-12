@@ -14,6 +14,7 @@ export default function HomePage() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [priority, setPriority] = useState<Task["priority"]>("Низкий");
+  const [category, setCategory] = useState<Task["category"]>("Личное");
   const [selectedTaskId, setSelectedTaskId] = useState<number | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [successMsg,setSuccessMsg] = useState<string | null>(null)
@@ -32,7 +33,7 @@ export default function HomePage() {
       return;
     }
 
-    addTask(title, desc, priority);
+    addTask(title, desc, priority, category);
     setTitle("");
     setDesc("");
     setPriority("Низкий");
@@ -67,29 +68,55 @@ export default function HomePage() {
             onChange={(e) => setDesc(e.target.value)}
           />
           <div className={styles["form-footer"]}>
-            <details className={styles["dropdown"]}>
-              <summary className={styles["dropdown-trigger"]}>
-                <span>Приоритет ({priority})</span>
-              </summary>
+            <div className={styles["dropdowns-container"]}>
+              <details className={styles["dropdown"]}>
+                <summary className={styles["dropdown-trigger"]}>
+                  <span>Приоритет ({priority})</span>
+                </summary>
 
-              <div className={styles["dropdown-menu"]}>
-                {(["Низкий", "Средний", "Высокий"] as const).map((prio) => (
-                  <button
-                    key={prio}
-                    type="button"
-                    className={`${styles["dropdown-item"]} ${priority === prio ? styles["active"] : ""}`}
-                    onClick={(e) => {
-                      setPriority(prio);
-                      e.currentTarget
-                        .closest("details")
-                        ?.removeAttribute("open");
-                    }}
-                  >
-                    Приоритет ({prio})
-                  </button>
-                ))}
-              </div>
-            </details>
+                <div className={styles["dropdown-menu"]}>
+                  {(["Низкий", "Средний", "Высокий"] as const).map((prio) => (
+                    <button
+                      key={prio}
+                      type="button"
+                      className={`${styles["dropdown-item"]} ${priority === prio ? styles["active"] : ""}`}
+                      onClick={(e) => {
+                        setPriority(prio);
+                        e.currentTarget
+                          .closest("details")
+                          ?.removeAttribute("open");
+                      }}
+                    >
+                      Приоритет ({prio})
+                    </button>
+                  ))}
+                </div>
+              </details>
+
+              <details className={styles["dropdown"]}>
+                <summary className={styles["dropdown-trigger"]}>
+                  <span>Категория ({category})</span>
+                </summary>
+
+                <div className={styles["dropdown-menu"]}>
+                  {(["Работа", "Дом", "Учеба", "Личное", "Другое"] as const).map((cat) => (
+                    <button
+                      key={cat}
+                      type="button"
+                      className={`${styles["dropdown-item"]} ${category === cat ? styles["active"] : ""}`}
+                      onClick={(e) => {
+                        setCategory(cat);
+                        e.currentTarget
+                          .closest("details")
+                          ?.removeAttribute("open");
+                      }}
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                </div>
+              </details>
+            </div>
             <button className={styles["btn-create"]} onClick={handleCreateTask}>
               Создать
             </button>
